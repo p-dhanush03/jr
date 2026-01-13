@@ -1,0 +1,596 @@
+/* ===============================
+   DESIGN SYSTEM — NEURAL CANVAS
+================================ */
+
+:root {
+  --bg-main: #0b0f1a;
+  --bg-panel: rgba(18, 22, 40, 0.85);
+  --bg-soft: rgba(255, 255, 255, 0.04);
+  --border-soft: rgba(255, 255, 255, 0.08);
+
+  --accent-purple: #8b5cf6;
+  --accent-pink: #ec4899;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+
+  --text-main: #f9fafb;
+  --text-muted: #c7c9d3;
+}
+
+/* ===============================
+   GLOBAL RESET
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: radial-gradient(
+    circle at top,
+    #1a1240 0%,
+    var(--bg-main) 60%
+  );
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--text-main);
+}
+
+#root {
+  height: 100%;
+}
+
+/* ===============================
+   APP SHELL
+================================ */
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  padding: 32px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===============================
+   NEURAL CANVAS ROOT
+================================ */
+
+.nc-root {
+  width: 100%;
+}
+
+.nc-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.nc-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.nc-title-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.nc-title {
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    90deg,
+    var(--accent-purple),
+    var(--accent-pink)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.nc-subtitle {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* ===============================
+   TABS
+================================ */
+
+.nc-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.tab-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  border: 1px solid var(--border-soft);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tab-button.active {
+  background: linear-gradient(
+    90deg,
+    var(--accent-purple),
+    var(--accent-pink)
+  );
+  color: white;
+  border: none;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.35);
+}
+
+/* ===============================
+   PANELS
+================================ */
+
+.panel {
+  background: var(--bg-panel);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid var(--border-soft);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* ===============================
+   AI GENERATOR LAYOUT
+================================ */
+
+.generator-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+/* ===============================
+   FORM ELEMENTS
+================================ */
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.select,
+.textarea,
+input {
+  width: 100%;
+  background: #0f1325;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  padding: 12px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.textarea {
+  resize: none;
+  min-height: 110px;
+}
+
+.select:focus,
+.textarea:focus,
+input:focus {
+  outline: none;
+  border-color: var(--accent-purple);
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(
+    90deg,
+    var(--accent-purple),
+    var(--accent-pink)
+  );
+  color: white;
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.35);
+}
+
+.btn-secondary {
+  background: var(--bg-soft);
+  color: white;
+}
+
+.btn-success {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.btn-danger {
+  background: linear-gradient(90deg, #ef4444, #f472b6);
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* ===============================
+   PREVIEW & CANVAS
+================================ */
+
+.preview-area {
+  width: 100%;
+  min-height: 360px;
+  background: #0f1325;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.canvas {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #0f1325;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+}
+
+/* ===============================
+   DRAW LAYOUT
+================================ */
+
+.canvas-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  aspect-ratio: 1 / 1;
+  margin: auto;
+}
+
+/* ===============================
+   HISTORY
+================================ */
+
+.history-layout {
+  display: flex;
+  justify-content: center;
+}
+
+.history-panel {
+  max-width: 900px;
+  width: 100%;
+}
+
+.history-item {
+  background: var(--bg-soft);
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid var(--border-soft);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1024px) {
+  .generator-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .draw-layout {
+    flex-direction: column;
+  }
+
+  .tools-panel {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .app-main {
+    padding: 20px;
+  }
+}
+/* ===============================
+   DRAWING COLOR PALETTE (IMPROVED)
+================================ */
+
+/* Background container */
+.color-palette {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  justify-items: center;
+}
+
+/* Individual color buttons */
+.color-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border 0.15s ease;
+}
+
+/* Hover effect */
+.color-button:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Selected color ring */
+.color-button.selected {
+  border-color: white;
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.9),
+    0 8px 20px rgba(139, 92, 246, 0.35);
+}
+
+/* Inner shine */
+.color-button::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.35),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* ===============================
+   DRAWING TOOLS — IMPRESSIVE UI
+================================ */
+
+/* Tools panel enhancement */
+.panel:has(.color-palette) {
+  background: linear-gradient(
+    180deg,
+    rgba(30, 26, 70, 0.9),
+    rgba(18, 22, 40, 0.9)
+  );
+}
+
+/* Section spacing */
+.panel .space-y-4 > div {
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Labels */
+.panel .label {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #c7c9d3;
+}
+
+/* ===============================
+   RANGE SLIDER (BRUSH SIZE)
+================================ */
+
+.range {
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #8b5cf6,
+    #ec4899
+  );
+  outline: none;
+  margin-top: 10px;
+}
+
+/* Slider thumb */
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  box-shadow:
+    0 0 0 4px rgba(139, 92, 246, 0.35),
+    0 6px 16px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  box-shadow:
+    0 0 0 4px rgba(139, 92, 246, 0.35),
+    0 6px 16px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+/* ===============================
+   COLOR PALETTE CONTAINER
+================================ */
+
+.color-palette {
+  background: radial-gradient(
+    circle at top,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+}
+
+/* ===============================
+   TOOL ACTION BUTTONS
+================================ */
+
+.panel .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+.panel .btn-danger {
+  background: linear-gradient(
+    90deg,
+    #ef4444,
+    #f43f5e
+  );
+}
+
+.panel .btn-success {
+  background: linear-gradient(
+    90deg,
+    #10b981,
+    #34d399
+  );
+}
+
+/* Button hover polish */
+.panel .btn:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* ===============================
+   DRAW CANVAS — CLEAR & SAVE
+================================ */
+
+/* Container spacing */
+.panel .flex.gap-3 {
+  margin-top: 6px;
+}
+
+/* ===== CLEAR BUTTON (DESTRUCTIVE) ===== */
+.panel .btn-danger {
+  background: linear-gradient(
+    135deg,
+    #7f1d1d,
+    #ef4444
+  );
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 8px 20px rgba(239, 68, 68, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.panel .btn-danger:hover {
+  background: linear-gradient(
+    135deg,
+    #991b1b,
+    #f87171
+  );
+  box-shadow:
+    0 12px 28px rgba(239, 68, 68, 0.45);
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* ===== SAVE BUTTON (PRIMARY ACTION) ===== */
+.panel .btn-success {
+  background: linear-gradient(
+    135deg,
+    #065f46,
+    #10b981
+  );
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 10px 25px rgba(16, 185, 129, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.panel .btn-success:hover {
+  background: linear-gradient(
+    135deg,
+    #047857,
+    #34d399
+  );
+  box-shadow:
+    0 14px 34px rgba(16, 185, 129, 0.55);
+  transform: translateY(-1px) scale(1.03);
+}
+
+/* ===== ICON ALIGNMENT ===== */
+.panel .btn-danger svg,
+.panel .btn-success svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+
